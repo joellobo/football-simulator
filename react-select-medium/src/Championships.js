@@ -2,20 +2,22 @@ import React, { Component } from 'react'
 import Select from 'react-select'
 import axios from 'axios'
 
-export default class Multi extends Component {
+export default class Championships extends Component {
 
   constructor(props){
     super(props)
     this.state = {
       selectOptions : [],
-      value:[]
+      id: "",
+      name: ''
     }
   }
 
  async getOptions(){
-    //const res = await axios.get('https://jsonplaceholder.typicode.com/users')
-    const res = await axios.get('http://localhost:3000/teams')
+    const res = await axios.get('http://localhost:3000/championships')
     const data = res.data
+
+    console.log(data)
 
     const options = data.map(d => ({
       "value" : d.id,
@@ -29,7 +31,7 @@ export default class Multi extends Component {
 
   handleChange(e){
     console.log(e)
-   this.setState({value:e})
+   this.setState({id:e.value, name:e.label})
   }
 
   componentDidMount(){
@@ -37,13 +39,11 @@ export default class Multi extends Component {
   }
 
   render() {
-    console.log(this.state.value)
+    console.log(this.state.selectOptions)
     return (
       <div>
-        <Select options={this.state.selectOptions} onChange={this.handleChange.bind(this)} isMulti />
-        {
-            this.state.value === null ? "" : this.state.value.map(v => <h4>{v.label}</h4>)
-        }
+        <Select options={this.state.selectOptions} onChange={this.handleChange.bind(this)}/>
+        <p>You have selected <strong>{this.state.name}</strong> whose id is <strong>{this.state.id}</strong></p>
       </div>
     )
   }

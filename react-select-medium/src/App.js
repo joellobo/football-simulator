@@ -1,52 +1,58 @@
-import React, { Component } from 'react'
-import Select from 'react-select'
-import axios from 'axios'
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Teams from "./Teams";
+import Players from "./Players";
+import Championships from "./Championships"
 
-import Multi from './multi'
-
-export default class App extends Component {
-
-  constructor(props){
-    super(props)
-    this.state = {
-      selectOptions : [],
-      id: "",
-      name: ''
-    }
-  }
-
- async getOptions(){
-    const res = await axios.get('https://jsonplaceholder.typicode.com/users')
-    const data = res.data
-
-    const options = data.map(d => ({
-      "value" : d.id,
-      "label" : d.name
-
-    }))
-
-    this.setState({selectOptions: options})
-
-  }
-
-  handleChange(e){
-    console.log(e)
-   this.setState({id:e.value, name:e.label})
-  }
-
-  componentDidMount(){
-      this.getOptions()
-  }
-
-  render() {
-    console.log(this.state.selectOptions)
-    return (
+export default function App() {
+  return (
+    <Router>
       <div>
-        <Select options={this.state.selectOptions} onChange={this.handleChange.bind(this)}/>
-    <p>You have selected <strong>{this.state.name}</strong> whose id is <strong>{this.state.id}</strong></p>
-      <Multi/>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/teams">Teams</Link>
+            </li>
+            <li>
+              <Link to="/players">Players</Link>
+            </li>
+            <li>
+              <Link to="/championships">Championships</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+        <Route path="/championships">
+            <Championships />
+          </Route>
+          <Route path="/players">
+            <Players />
+          </Route>
+          <Route path="/teams">
+            <Teams />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
       </div>
-    )
-  }
+    </Router>
+  );
 }
+
+function Home() {
+  return <h2>Home</h2>;
+}
+
 
