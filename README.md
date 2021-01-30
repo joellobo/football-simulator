@@ -1,13 +1,14 @@
 # football-simulator
 Football Simulator
 
-NodeJS v
-NPM v
+NodeJS 
+NPM 
+
 
 # api
- expressjs
+ expressjs 
 # web
- react
+ react redux react-router
 # desktop
  electron
 # mobile
