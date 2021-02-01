@@ -1,8 +1,11 @@
 # football-simulator
 Football Simulator
 
-NodeJS 
+NodeJS Yarn
 NPM 
+Docker
+Postgres
+
 
 
 # api
