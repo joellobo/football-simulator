@@ -28,6 +28,42 @@ schemes:
 - "https"
 - "http"
 paths:
+  /matches:
+    get:
+      tags:
+      - "match"
+      summary: "Finds Matches"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - name: "status"
+        in: "query"
+        description: "Status values that need to be considered for filter"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "available"
+          - "pending"
+          - "sold"
+          default: "available"
+        collectionFormat: "multi"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Match"
+        "400":
+          description: "Invalid status value"
+      security:
+      - footballsimulator_auth:
+        - "write:matches"
+        - "read:matches"
 
 
 

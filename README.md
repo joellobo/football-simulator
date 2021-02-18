@@ -1,11 +1,17 @@
 # football-simulator
 Football Simulator
 
+NodeJS Yarn
+NPM 
+Docker
+Postgres
+
+
 
 # api
- expressjs
+ expressjs 
 # web
- react
+ react redux react-router
 # desktop
  electron
 # mobile
