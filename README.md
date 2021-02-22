@@ -12,7 +12,7 @@ Postgres
  expressjs 
 
 # api 
-spring boot
+spring boot / spring data / h2
 
 # web
  react redux react-router
