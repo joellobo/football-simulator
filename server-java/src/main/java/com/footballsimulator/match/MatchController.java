@@ -1,4 +1,4 @@
-package com.footballsimulator.player;
+package com.footballsimulator.match;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/match")
-public class PlayerController {
+@RequestMapping("/api/player")
+public class MatchController {
 
     @GetMapping("/")
     public ResponseEntity<String> get() {
